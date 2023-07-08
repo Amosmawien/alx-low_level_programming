@@ -1,38 +1,51 @@
 #include <stdio.h>
-#define LARGEST 10000000000
-/**
- * main - main block
- * Description: Find and print the first 98 fib numbers starting with 1 and 2.
- * Numbers should be coma and space separated.
- * Return: 0
+/*
+ * Task 14 in 0x02. C - Functions, nested loops
+ * Purpose : print first 50 Fibonacci numbers
  */
+
+/**
+ * main - function is the Entry Point for this porgram
+ * prints first 50 Fibonacci numbers
+ * Return: value is (0)
+ */
+
 int main(void)
 {
-	unsigned long int fr1 = 0, bk1 = 1, fr2 = 0, bk2 = 2;
-	unsigned long int hold1, hold2, hold3;
-	int count;
+	unsigned long int current_fibonacci, previous_fibonacci, next_fibonacci;
 
-	printf("%lu, %lu, ", bk1, bk2);
-	for (count = 2; count < 98; count++)
+	unsigned long int previous_fibonacci_1, previous_fibonacci_2;
+
+	unsigned long int next_fibonacci_1, next_fibonacci_2;
+
+	previous_fibonacci = 1;
+	next_fibonacci = 2;
+
+	printf("%lu", previous_fibonacci);
+
+	for (current_fibonacci = 1; current_fibonacci < 91; current_fibonacci++)
 	{
-		if (bk1 + bk2 > LARGEST || fr2 > 0 || fr1 > 0)
-		{
-			hold1 = (bk1 + bk2) / LARGEST;
-			hold2 = (bk1 + bk2) % LARGEST;
-			hold3 = fr1 + fr2 + hold1;
-			fr1 = fr2, fr2 = hold3;
-			bk1 = bk2, bk2 = hold2;
-				printf("%lu%010lu", fr2, bk2);
-		}
-		else
-		{
-			hold2 = bk1 + bk2;
-			bk1 = bk2, bk2 = hold2;
-			printf("%lu", bk2);
-		}
-		if (count != 97)
-			printf("; ");
+		printf(", %lu", next_fibonacci);
+		next_fibonacci = next_fibonacci + previous_fibonacci;
+		previous_fibonacci = next_fibonacci - previous_fibonacci;
 	}
+	previous_fibonacci_1 = previous_fibonacci / 1000000000;
+	previous_fibonacci_2 = previous_fibonacci % 1000000000;
+	next_fibonacci_1 = next_fibonacci / 1000000000;
+	next_fibonacci_2 = next_fibonacci % 1000000000;
+
+	for (current_fibonacci = 92; current_fibonacci < 99; ++current_fibonacci)
+	{
+		printf(", %lu", next_fibonacci_1 + (next_fibonacci_2 / 1000000000));
+		printf("%lu", next_fibonacci_2 % 1000000000);
+		next_fibonacci_1 = next_fibonacci_1 + previous_fibonacci_1;
+		previous_fibonacci_1 = next_fibonacci_1 - previous_fibonacci_1;
+		next_fibonacci_2 = next_fibonacci_2 + previous_fibonacci_2;
+		previous_fibonacci_2 = next_fibonacci_2 - previous_fibonacci_2;
+	}
+
 	printf("\n");
+
 	return (0);
 }
+
