@@ -1,25 +1,36 @@
 #include "main.h"
-/**
- * jack_bauer - function that prints every minute of the day, 24 hour clock
- * h = hour, m = minutes
- * / 10 allows second digit to rotate
- * for loop breaks before passing 24:00
- * Return: 24 hour clock line by line
+/*
+ * Task 8 in 0x02. C - Functions, nested loops
+ * Purpose : prints every minute of the day in 4 digits followed by a new line.
+ * my sulotion: using nested while to print evry  minute and hour
+ *		using / and % to cut hour and minute to 4 digits
  */
+
+/**
+ * jack_bauer - prints every minute of the day
+ * Return: void
+ *
+ */
+
 void jack_bauer(void)
 {
-	int h, m;
+	char hours = 0;
+	char minute = 0;
 
-	for (h = 0; h < 24; h++)
+	while (hours != 24)
 	{
-		for (m = 0; m < 60; m++)
+		minute = 0;
+		while (minute != 60)
 		{
-			_putchar((h / 10) + '0');
-			_putchar((h % 10) + 'o');
+			_putchar('0' + hours / 10);
+			_putchar('0' + hours % 10);
 			_putchar(':');
-			_putchar((m / 10) + '0');
-			_putchar((m % 10) + 'o');
+			_putchar('0' + minute / 10);
+			_putchar('0' + minute % 10);
 			_putchar('\n');
+			minute++;
 		}
+		hours++;
+
 	}
 }
